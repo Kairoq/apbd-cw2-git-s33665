@@ -36,4 +36,24 @@ public class Service
         equipment.IsAvailable = true;
         return rental;
     }
+
+    public void ReturnEquipement(Rental rental)
+    {
+        rental.ReturnDate = DateTime.Now;
+
+        if (rental.ReturnDate > rental.DueDate)
+        {
+            int daysLate = (rental.RentalDate.Date - rental.DueDate).Days;
+            if (daysLate <= 2)
+            {
+                rental.Penalty= daysLate * 3;
+            }
+            else
+            {
+                rental.Penalty = daysLate * 5;
+            }
+        }
+        rental.Equipment.IsAvailable = true;
+        _rentals.Remove(rental);
+    }
 }
