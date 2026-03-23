@@ -2,9 +2,9 @@ namespace ConsoleApp1;
 
 public class Student : User
 {
-    public int MaxRentalAmount = 2;
+    public override int MaxRentalAmount => 2;
 
-    public Student(string name, string surname, int maxRentalAmount) : base(name, surname) {}
+    public Student(string name, string surname) : base(name, surname) {}
 
     public override string ToString()
     {

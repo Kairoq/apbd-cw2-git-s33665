@@ -2,7 +2,8 @@ namespace ConsoleApp1;
 
 public class Rental
 {
-    public int ID { get; set; }
+    private static int _NextID = 1;
+    public int ID { get; private set; }
     public User User { get; set; }
     public Equipment Equipment { get; set; }
     public DateTime RentalDate { get; set; }
@@ -16,6 +17,7 @@ public class Rental
 
     public Rental(User user, Equipment equipment, DateTime rentalDate, DateTime dueDate)
     {
+        ID = _NextID++;
         User = user;
         Equipment = equipment;
         RentalDate = rentalDate;
