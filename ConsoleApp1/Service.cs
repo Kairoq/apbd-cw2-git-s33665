@@ -36,4 +36,20 @@ public class Service
         equipment.IsAvailable = true;
         return rental;
     }
+
+    public IEnumerable<Equipment> GetEquipment()
+    {
+        return _equipment;
+    }
+
+    public IEnumerable<Equipment> GetAvailableEquipment()
+    {
+        return _equipment.Where(e => e.IsAvailable);
+    }
+    
+    public IEnumerable<Rental> GetActiveRentalsForUser(User user)
+    {
+        return _rentals.Where(r => r.User == user && !r.IsReturned);
+    }
+
 }
